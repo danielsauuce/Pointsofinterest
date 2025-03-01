@@ -2,73 +2,92 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
-const PORT = 3001;
+const PORT = 3000;
 
-import cors from 'cors';
+import cors from "cors";
 app.use(cors());
 
 import Database from "better-sqlite3";
-const db = Database("./Database/file_name");
+const db = Database("pointsofinterest.db");
 
-
-//API to get POI in a region
-app.get("/poi/:region", (req,res) => {
-    try{
-        const query = db.prepare("SELECT * FROM pointofinterest WHERE region =?");
-        const results = db.query.all(req.params.region);
-
-        res.json(results);
-
-    }catch{e} {
-        res.status(500).json({error: "ERROR"})
-    }
-    
-});
-
-
-//API to Post data to the database
-app.post("/poi/newpointofinterest", (req,res) => {
-
-    try{
-
-        if(
-            req.body.name == "" ||
-            req.body.type == "" ||
-            req.body.country == "" ||
-            req.body.region == "" ||
-            req.body.ion == "" ||
-            req.body.lat == "" ||
-            req.body.description == "" ||
-            req.body.recommendation == ""
-
-        ) {
-            (res.status(400).json({error: "All fields must be field"}))
-        }
-
-        const query = db.prepare("INSERT INTO pointofinterest (name, type, country, region, ion, lat, description, recommendation) VALUES(?, ?, ?, ?, ?, ?, ?, ?) ");
-
-        const results = query.run(
-        req.body.name,
-        req.body.type,
-        req.body.country,
-        req.body.region,
-        req.body.ion,
-        req.body.lat,
-        req.body.description,
-        req.body.recommendation
-        ); 
-        res.json(results);
-
-
-    }catch (error){
-        res.status(500).json({error:error.message})
+//API to get POI by region
+app.get("/poi/:region", (req, res) => {
+  try {
+    if (req.params.region == "") {
+      res.status(400).json({ error: "Field must be filled" });
     }
 
+    const query = db.prepare("SELECT * FROM pointsofinterest WHERE region =?");
+
+    const results = query.all(req.params.region);
+
+    if (results.length == 0) {
+      res
+        .status(404)
+        .json({ error: "No point of interest found for the region" });
+    } else {
+      res.status(200).json(results);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
+//API to create a new POI
+app.post("/poi/newpoi", (req, res) => {
+  try {
+    if (
+      req.body.name == "" ||
+      req.body.type == "" ||
+      req.body.country == "" ||
+      req.body.region == "" ||
+      req.body.lon == "" ||
+      req.body.lat == "" ||
+      req.body.description == "" ||
+      req.body.recommendations == ""
+    ) {
+      res.status(400).json({ error: "All fields must be field" });
+    }
 
+    const query = db.prepare(
+      "INSERT INTO pointsofinterest (name, type, country, region, lon, lat, description, recommendations) VALUES(?, ?, ?, ?, ?, ?, ?, ?) "
+    );
+
+    const results = query.run(
+      req.body.name,
+      req.body.type,
+      req.body.country,
+      req.body.region,
+      req.body.lon,
+      req.body.lat,
+      req.body.description,
+      req.body.recommendations
+    );
+    res.status(200).json({ success: "Point of interest added successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//API to increase recommendation by 1
+app.put("/poi/:id", (req, res) => {
+  try {
+    const query = db.prepare(
+      "UPDATE pointsofinterest SET recommendations = recommendations +1 WHERE id = ?"
+    );
+
+    const results = query.run(req.params.id);
+
+    if (results.changes == 1) {
+      res.status(200).json({ success: "Number of recommendation updated" });
+    } else {
+      res.status(404).json({ error: "ID not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-}); 
-
+  console.log(`Server started on port ${PORT}`);
+});
