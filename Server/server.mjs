@@ -6,9 +6,6 @@ app.use(express.json());
 
 const PORT = 3000;
 
-import cors from "cors";
-app.use(cors());
-
 import Database from "better-sqlite3";
 const db = Database("pointsofinterest.db");
 
@@ -91,5 +88,5 @@ app.put("/poi/:id", (req, res) => {
 });
 
 ViteExpress.listen(app, 3000, () => {
-  console.log("Express server with Vite integration now running...");
+  console.log("Express server with Vite integration now running");
 });
