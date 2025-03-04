@@ -1,4 +1,6 @@
 import express from "express";
+import ViteExpress from "vite-express";
+
 const app = express();
 app.use(express.json());
 
@@ -88,6 +90,6 @@ app.put("/poi/:id", (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+ViteExpress.listen(app, 3000, () => {
+  console.log("Express server with Vite integration now running...");
 });
