@@ -1,10 +1,14 @@
-import SignUp from "./signup";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+//import Navbar from "./Navbar";
 import LoginPage from "./Login";
 
 function App() {
-  return <div>
-    <SignUp/>
-    <LoginPage/>
-  </div>;
+  return (
+    <Router>
+      <LoginPage/>
+    
+    </Router>
+  );
 }
+
 export default App;

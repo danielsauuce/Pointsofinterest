@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+function LoginPage () {
+  
+  return(
+    <div className="wrapper">
+      <div className="form-box">
+        <form action="#">
+          <h1>Point Of Interest</h1>
+          <h6>Please enter your details.</h6>
 
-function LoginPage() {
+          <div className="form-input">
+            <input type="text" placeholder="Username" required/>
+          </div>
 
-    const [data,setData] = useState({
-        username: "",
-        password: ""
-    })
+          <div className="form-input">
+            <input type="password" placeholder="Password" required/>
+          </div>
 
-    const loginuser = (e) => {
-        e.preventDefault()
-    }
+          <div className="remember-forget">
+            <label><input type="checkbox"/>Remember for 30 days</label>
+            <a href="#">Forget password?</a>
+          </div>
 
-  return (
-    <div className="title-head">
-      <form onSubmit={loginuser}>
-        <h1>POINT OF INTEREST</h1>
-        <h3>Login</h3>
-        <label>Username</label>
-        <input type="text" placeholder="username"></input>
-        <label>Password</label>
-        <input type="password" placeholder="password"></input>
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit">Login</button>
+
+          <div className="register-link">
+            <p>Don't have an account? <a href="#">Register</a></p>
+          </div>
+        </form>
+      </div>
     </div>
+
   );
 }
+
 export default LoginPage;

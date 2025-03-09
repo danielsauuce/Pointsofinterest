@@ -124,7 +124,7 @@ app.post("/register", (req, res) => {
   }
 });
 
-// Login || Existing user
+// Login user
 app.post("/login", (req, res) => {
   try {
     if (req.body.username == "" || req.body.password == "") {
@@ -149,5 +149,5 @@ app.post("/login", (req, res) => {
 });
 
 ViteExpress.listen(app, 3000, () => {
-  console.log("Express server with Vite integration now running");
+  console.log(`Express server with Vite integration now running on Port ${PORT}`);
 });
