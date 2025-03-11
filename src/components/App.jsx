@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//import Navbar from "./Navbar";
 import LoginPage from "./Login";
+import SignUp from "./Signup";
+import Navbar from "./navbar";
+import PoiSearch from "./poisearch";
 
 function App() {
   return (
-    <Router>
-      <LoginPage/>
-    
-    </Router>
+    <>
+    <PoiSearch/>
+    </>
   );
 }
 

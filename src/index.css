@@ -15,8 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color:#FBFBFB;
-    padding-top: 100%;
+    background-color:#E8F5F2;
 }
 
 /* NavBar */
@@ -84,11 +83,10 @@ body {
 .login-button:hover {
     background-color: #FFB22C;
     color: #F7F7F7;
-    
 }
 
-/* Login page */
 
+/* Login page */
 .wrapper {
     position: relative;
     width: 420px;
@@ -106,13 +104,15 @@ body {
 .wrapper form h1 {
     font-size: 36px;
     text-align: center;
+    color: #854836;
 }
 
 .wrapper form h6 {
-    font-size: 10px;
-    font-weight: lighter;
-    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: #333;
     margin: 15px;
+    text-align: center;
 }
 
 .form-input {
@@ -148,7 +148,7 @@ body {
 }
 
 .remember-forget label input {
-    accent-color: black;
+    accent-color: #854836;
     margin-right: 4px;
 }
 
@@ -176,6 +176,14 @@ form button {
     font-weight: 700;
 }
 
+button:hover {
+    background-color: #FFB22C;
+}
+
+button:active {
+    background-color: #FF9A1C;
+}
+
 .register-link {
     font-size: 14.5px;
     text-align: center;
@@ -192,26 +200,184 @@ form button {
     text-decoration: underline;
 }
 
+/* Signup page */
+.wrapper-signup {
+    position: relative;
+    width: 450px;
+    height: auto;
+    background-color: #F8EDE3;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 40px 20px;
+    text-align: center;
+    margin: 50px auto;
+}
 
+.wrapper-signup h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #854836;
+    margin-bottom: 20px;
+}
 
+.wrapper-signup h6 {
+    font-size: 14px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 30px;
+}
 
+.form-input {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+}
 
+.form-input input {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    padding: 0 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
+.form-input input:focus {
+    border-color: #B17F59;
+    box-shadow: 0 0 5px rgba(177, 127, 89, 0.5);
+}
 
+.terms-box {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    justify-content: flex-start;
+}
 
+.terms-box a {
+    color: #854836;
+    font-weight: bold;
+}
 
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        height: auto;
-        padding: 10px;
+.terms-box label input {
+    accent-color: #854836;
+    margin-right: 10px;
+}
 
-    }
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #B17F59;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    .wrap-nav {
-        grid-template-columns: repeat(3,auto);
-    }
+button:hover {
+    background-color: #FFB22C;
+}
+
+button:active {
+    background-color: #FF9A1C;
 }
 
 
+.login-link {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #555;
+}
 
+.login-link p a {
+    text-decoration: none;
+    color: #854836;
+    font-weight: bold;
+}
+
+.login-link p a:hover {
+    text-decoration: underline;
+}
+
+
+/* POI SEARCH PAGE */
+.POI-wrapper {
+    position: relative;
+    width: 420px;
+    padding: 30px;
+    background-color: #F8EDE3;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.POI-wrapper h1 {
+    font-size: 36px;
+    font-weight: 300;
+    color: #854836;
+    margin-bottom: 20px;
+    text-align: center; 
+    white-space: nowrap; 
+}
+
+.input-poi {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.input-poi input {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    padding: 0 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-poi input:focus {
+    border-color: #B17F59;
+    box-shadow: 0 0 5px rgba(177, 127, 89, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #B17F59;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FFB22C;
+}
+
+button:active {
+    background-color: #FF9A1C;
+}
+
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+    .wrapper-signup {
+        width: 90%;
+        padding: 30px 15px;
+    }
+}

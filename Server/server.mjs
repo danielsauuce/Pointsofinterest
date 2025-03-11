@@ -141,7 +141,7 @@ app.post("/login", (req, res) => {
         .status(400)
         .json({ error: "Username or Password not found, Please register!" });
     } else {
-      return res.status(200).json({ error: "Login Successfully." });
+      res.status(200).json({ message: "Login Successfully." });
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -149,5 +149,7 @@ app.post("/login", (req, res) => {
 });
 
 ViteExpress.listen(app, 3000, () => {
-  console.log(`Express server with Vite integration now running on Port ${PORT}`);
+  console.log(
+    `Express server with Vite integration now running on Port ${PORT}`
+  );
 });
