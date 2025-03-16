@@ -9,7 +9,7 @@ const PORT = 3000;
 import Database from "better-sqlite3";
 const db = Database("pointsofinterest.db");
 
-// To get POI by region
+// Look up POI by region
 app.get("/poi/:region", (req, res) => {
   try {
     if (req.params.region == "") {
@@ -32,7 +32,7 @@ app.get("/poi/:region", (req, res) => {
   }
 });
 
-// To create a new POI
+// Add a new POI
 app.post("/poi/newpoi", (req, res) => {
   try {
     if (
@@ -70,8 +70,8 @@ app.post("/poi/newpoi", (req, res) => {
   }
 });
 
-// To increase recommendation by 1
-app.put("/poi/:id", (req, res) => {
+// Recommend a POI (increase by 2)
+app.post("/poi/:id/recommend", (req, res) => {
   try {
     const query = db.prepare(
       "UPDATE pointsofinterest SET recommendations = recommendations +1 WHERE id = ?"
@@ -89,6 +89,11 @@ app.put("/poi/:id", (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
+});
+
+// Upload a picture of a POI
+app.post("/poi/:id/upload", (req,res) => {
+
 });
 
 // Register user
@@ -124,7 +129,7 @@ app.post("/register", (req, res) => {
   }
 });
 
-// Login user
+// User Login
 app.post("/login", (req, res) => {
   try {
     if (req.body.username == "" || req.body.password == "") {
@@ -141,12 +146,27 @@ app.post("/login", (req, res) => {
         .status(400)
         .json({ error: "Username or Password not found, Please register!" });
     } else {
-      res.status(200).json({ message: "Login Successfully." });
+      res.status(200).json({ message: "Logged in successfully." });
     }
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 });
+
+//User Logout
+app.post("/logout", (req,res) => {
+  
+});
+
+//Add a review for Poi
+app.post("/poi/:id/review", (req,res) => {
+try{
+
+}catch (error) {
+
+}
+});
+
 
 ViteExpress.listen(app, 3000, () => {
   console.log(

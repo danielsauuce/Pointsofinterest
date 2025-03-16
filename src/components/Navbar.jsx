@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 function Navbar() {
   return (
     <nav className="navbar-container">
@@ -5,9 +7,9 @@ function Navbar() {
       <h1 className="nav-logo">Point of Interest</h1>
 
       <ul className="wrap-nav">
-        <li><a href="/" className="home-tag">Home</a></li>
-        <li><a href="/about" className="about-tag">About</a></li>
-        <li><a href="/contact" className="contact-tag">Contact</a></li>
+        <li><Link to="/" className="home-tag">Home</Link></li>
+        <li><Link to="/addpoi" className="about-tag">Add POI</Link></li>
+        <li><Link to="/poisearch" className="contact-tag">Search POI</Link></li>
         <button className="login-button">Login</button>
       </ul>
       
