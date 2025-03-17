@@ -1,4 +1,4 @@
-import backgroundImage from "../assets/Backgroundimg.avif";
+import backgroundImage from "../assets/Backgrounding.avif";
 
 
 function Hero() {
