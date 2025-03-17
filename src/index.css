@@ -14,7 +14,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#E8F5F2;
 }
 
 /* NavBar */
@@ -35,9 +34,14 @@ body {
     background-color: #FBFBFB;
 }
 
+.logo {
+    text-decoration: none;
+}
+
 .nav-logo {
     font-size: 2rem;
-    color: #854836
+    color: #854836;
+   
 }
 
 .wrap-nav {
@@ -437,9 +441,6 @@ button:active {
 }
 
 
-
-
-
 /* Responsive Media Query */
 @media (max-width: 768px) {
     .wrapper-signup {
@@ -460,4 +461,3 @@ button:active {
     }
 
 };
-    

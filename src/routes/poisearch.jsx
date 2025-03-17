@@ -25,7 +25,6 @@ function PoiSearch() {
     return (
         
         <div className="POI-wrapper">
-             <Navbar/>
 
             <h1>Search Points of Interest</h1>
 

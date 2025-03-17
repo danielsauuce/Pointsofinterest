@@ -8,7 +8,7 @@ function Hero() {
 
             <div className="hero-text">
                 <h1>Your Journey, Your Story</h1>
-                <p>Choose Your Favourite Point Of Interest</p>
+                <p>Choose Your Favourite Destination</p>
             </div>
         </div>
     );

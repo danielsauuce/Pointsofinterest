@@ -13,13 +13,16 @@ import Home from "../routes/home";
 function App() {
   return (
     <Router>
-       <Navbar/>
+      <Navbar/>
       
       <Routes>
         <Route path="/" element= {<Home/>}></Route>
         <Route path="/addpoi" element= {<AddPoi/>}></Route>
-        <Route path="/poisearch" element= {<PoiSearch/>}></Route>
+        <Route path="/searchpoi" element= {<PoiSearch/>}></Route>
+        <Route path="/signup" element= {<SignUp/>}></Route>
+        <Route path="/login" element= {<LoginPage/>}></Route>
       </Routes>
+      
     </Router>
 
   );

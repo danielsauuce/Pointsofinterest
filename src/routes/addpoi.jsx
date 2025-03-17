@@ -1,12 +1,12 @@
 import Navbar from "../components/navbar";
 import addPoi from "../assets/addpoi.avif";
+import Hero from "../components/hero";
 
 
 function AddPoi() {
     return(
         
         <div className="Addpoi-wrapper">
-            <Navbar/>
             <div>
                 <div className="img-wrapper"> <img src={addPoi} alt="Background"/> </div>
 
