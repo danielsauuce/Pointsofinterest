@@ -3,6 +3,7 @@ import Hero from "../components/hero";
 import Navbar from "../components/navbar";
 import AddPoi from "./addpoi";
 import Trip from "../components/trips";
+import Footer from "../components/footer";
 
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
             <Hero/>
             <Destination/>
             <Trip/>
+            <Footer/>
         </div>
 
     )
