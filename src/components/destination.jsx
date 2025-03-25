@@ -2,6 +2,7 @@ import Island from "../assets/island.avif"
 import Island2 from "../assets/island 2.avif"
 import Coastal from "../assets/coastal.avif"
 import Coastal2 from "../assets/coastal 2.avif"
+import "../components/destination.css";
 
 
 

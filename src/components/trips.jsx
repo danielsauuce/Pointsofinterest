@@ -2,6 +2,7 @@ import TripData from "./tripdata";
 import Trip1 from "../assets/trip 1.avif";
 import Trip2 from "../assets/trip 2.avif";
 import Trip3 from "../assets/trip 3.avif";
+import "../components/trips.css";
 
 function Trip() {
   return (

@@ -1,3 +1,6 @@
+import "../components/signup.css";
+
+
 function SignUp() {
   return (
     <div className="wrapper-signup">

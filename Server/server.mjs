@@ -71,7 +71,7 @@ app.post("/poi/newpoi", (req, res) => {
 });
 
 // Recommend a POI (increase by 2)
-app.post("/poi/:id/recommend", (req, res) => {
+app.post("/poi/recommend/:id", (req, res) => {
   try {
     const query = db.prepare(
       "UPDATE pointsofinterest SET recommendations = recommendations +1 WHERE id = ?"

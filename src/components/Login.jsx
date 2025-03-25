@@ -1,3 +1,4 @@
+import "../components/login.css";
 import { useState } from "react";
 
 function LoginPage() {
@@ -27,46 +28,48 @@ function LoginPage() {
   }
 
   return (
-    <div className="wrapper">
-      <div className="form-box">
-        <form onSubmit={handlelogin}>
-          <h1>Point Of Interest</h1>
-          <h6>Please enter your details.</h6>
+    <div style={{width:"100vw",height:"100vh",display:"flex", justifyContent:"center",alignItems:"center"}}>
+      <div className="wrapper">
+        <div className="form-box">
+          <form onSubmit={handlelogin}>
+            <h1>Point Of Interest</h1>
+            <h6>Please enter your details.</h6>
 
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
+            <div className="form-input">
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="form-input">
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+            <div className="form-input">
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="remember-forget">
-            <label>
-              <input type="checkbox" />
-              Remember for 30 days
-            </label>
-            <a href="#">Forgot password?</a>
-          </div>
+            <div className="remember-forget">
+              <label>
+                <input type="checkbox" />
+                Remember for 30 days
+              </label>
+              <a href="#">Forgot password?</a>
+            </div>
 
-          <button type="submit">Login</button>
+            <button type="submit">Login</button>
 
-          <div className="register-link">
-            <p>
-              Don't have an account? <a href="/signup">Register</a>
-            </p>
-          </div>
-        </form>
+            <div className="register-link">
+              <p>
+                Don't have an account? <a href="/signup">Register</a>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

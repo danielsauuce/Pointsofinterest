@@ -1,0 +1,111 @@
+
+.wrapper-signup {
+    position: relative;
+    width: 450px;
+    height: auto;
+    background-color: #F8EDE3;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 40px 20px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.wrapper-signup h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #854836;
+    margin-bottom: 20px;
+}
+
+.wrapper-signup h6 {
+    font-size: 14px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.form-input {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.form-input input {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    padding: 0 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input input:focus {
+    border-color: #B17F59;
+    box-shadow: 0 0 5px rgba(177, 127, 89, 0.5);
+}
+
+.terms-box {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.terms-box a {
+    color: #854836;
+    font-weight: bold;
+}
+
+.terms-box label input {
+    accent-color: #854836;
+    margin-right: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #B17F59;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FFB22C;
+}
+
+button:active {
+    background-color: #FF9A1C;
+}
+
+
+.login-link {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #555;
+}
+
+.login-link p a {
+    text-decoration: none;
+    color: #854836;
+    font-weight: bold;
+}
+
+.login-link p a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .wrapper-signup {
+        width: 90%;
+        padding: 30px 15px;
+    }
+}

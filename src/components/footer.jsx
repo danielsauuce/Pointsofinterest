@@ -3,6 +3,7 @@ import { TiSocialInstagram } from "react-icons/ti";
 import { TiSocialTwitter } from "react-icons/ti";
 import { TiSocialLinkedin } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import "../components/footer.css";
 
 
 function Footer() {
@@ -48,7 +49,7 @@ function Footer() {
                     <Link to="#">Discord</Link>
                     <Link to="#">Telegram</Link>
                     <Link to="#">Twitter</Link>
-                    <Link to="#">Facebook</Link>
+                    <Link to="https://www.facebook.com">Facebook</Link>
                 </div>
 
                 <div>
