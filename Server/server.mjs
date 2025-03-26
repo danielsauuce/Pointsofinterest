@@ -91,10 +91,6 @@ app.post("/poi/recommend/:id", (req, res) => {
   }
 });
 
-// Upload a picture of a POI
-app.post("/poi/:id/upload", (req,res) => {
-
-});
 
 // Register user
 app.post("/register", (req, res) => {
