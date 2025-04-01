@@ -2,3 +2,11 @@
     margin: 10rem;
 }
 
+.form-wrapper {
+    width: 40%;
+}
+
+.form-wrapper h1 {
+    text-align: center;
+}
+

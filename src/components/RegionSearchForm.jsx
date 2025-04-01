@@ -1,48 +1,7 @@
 import React, { useState } from "react";
 
-function RegionsSearchForm() {
-  const [results, setResults] = useState([]);
-  const [region, setRegion] = useState("");
-
-  async function Handlesearch(e) {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(`http://localhost:3000/poi/${region}`);
-      const result = await response.json();
-
-      setResults(result);
-      console.log(result);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
-  async function handleRecommend(e, id) {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(
-        `http://localhost:3000/poi/recommend/${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const status = await response.json();
-
-      if (response.status != 200) {
-        throw new Error(status.error);
-      } else {
-        console.log("Recommendation Updated");
-      }
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
-  }
+function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,region}) {
+  
 
   return (
     <div className="region-wrapper">
@@ -55,7 +14,7 @@ function RegionsSearchForm() {
             placeholder="Enter Region..."
             value={region}
             style={{ paddingBottom: "10px" }}
-            onChange={(e) => setRegion(e.target.value)}
+            onChange={(e) => updateRegion(e.target.value)}
           />
         </div>
         <button onClick={Handlesearch}>Search</button>
@@ -92,6 +51,7 @@ function RegionsSearchForm() {
                 <p>lon: {data.lon}</p>
                 <p>lat: {data.lat}</p>
                 <p>Description: {data.description}</p>
+                <p>Recommendations: {data.recommendations}</p>
                 <br />
                 <button onClick={(e) => handleRecommend(e, data.id)}>
                   Recommend
