@@ -1,9 +1,17 @@
-.form-container {
-    margin: 10rem;
+.search-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    padding-top: 120px;
 }
 
 .form-wrapper {
-    width: 40%;
+    width: 30%;
+    padding: 60px;
+    height: 100%;
+    background-color: #F8EDE3;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .form-wrapper h1 {

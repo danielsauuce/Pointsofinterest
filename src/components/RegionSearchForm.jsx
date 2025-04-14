@@ -23,19 +23,10 @@ function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,r
       <div style={{ paddingTop: "10px", height: "80%" }}>
         {results.length > 0 ? (
           <ul
-            style={{
-              height: "100%",
-              overflowY: "scroll",
-              listStyle: "none",
-              borderRadius: "5px",
-              padding: "2rem",
-              backgroundColor: "#F8EDE3",
-            }}
-          >
+            style={{height: "100%",overflowY: "scroll",listStyle: "none",borderRadius: "5px",padding: "2rem",backgroundColor: "#F8EDE3",}}>
+
             {results.map((data, index) => (
-              <li
-                key={index}
-                className="region-results"
+              <li key={index}className="region-results"
                 style={{
                   padding: "20px",
                   margin: "10px",

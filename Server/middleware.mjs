@@ -5,7 +5,7 @@ const userMiddleware = (req, res, next) => {
     if (req.session.username) {
       next();
     } else {
-      res.status(401).json({ error: "You're not logged in. Go away!" });
+      res.status(401).json({ error: "You're not logged in!" });
     }
   }
 };

@@ -3,6 +3,7 @@ import "../components/hero.css";
 
 
 function Hero() {
+    
     return (
         <div className="Hero-wrapper">
             <div className="img-wrapper"> <img src={backgroundImage} alt="Background" /> </div>

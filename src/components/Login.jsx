@@ -1,9 +1,13 @@
 import "../components/login.css";
 import { useState } from "react";
+import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
+  const navigate = useNavigate()
 
   async function handlelogin(e) {
     e.preventDefault();
@@ -20,7 +24,10 @@ function LoginPage() {
       const status = await response.json();
 
       if (response.status != 200) {
-        throw new Error(status.error);
+        toast.error("Username or Password do not match")
+      } else {
+        toast.success("Login Successfully")
+        navigate("/")                                                 
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -28,7 +35,8 @@ function LoginPage() {
   }
 
   return (
-    <div style={{width:"100vw",height:"100vh",display:"flex", justifyContent:"center",alignItems:"center"}}>
+    <div style={{width: "100vw",height: "100vh",display: "flex",justifyContent: "center", alignItems: "center", backgroundColor: "#6CBEC7"}}>
+    
       <div className="wrapper">
         <div className="form-box">
           <form onSubmit={handlelogin}>

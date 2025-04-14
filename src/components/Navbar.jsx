@@ -1,37 +1,21 @@
 import { Link } from "react-router-dom";
-import { BiLogoAirbnb } from "react-icons/bi";
 import { IoHomeSharp } from "react-icons/io5";
-import { TiPointOfInterest } from "react-icons/ti";
-import { RiSearchFill } from "react-icons/ri";
-import { FaBars, FaTimes } from "react-icons/fa";
-import { useState } from "react";
 import "../components/navbar.css";
-
-
+import { useState } from "react";
 
 function Navbar() {
+  const [user,setUser] = useState("");
   
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+
 
   return (
     <nav className="navbar-container">
       <Link to="/" className="logo">
-        <h1 className="nav-logo">
-          <BiLogoAirbnb className="icon" /> Point of Interest
-        </h1>
+        <h1 className="nav-logo"> Point of Interest</h1>
       </Link>
 
-      {/* Menu Toggle Button */}
-      <div className="menu-icon" onClick={toggleMenu}>
-        {isMenuOpen ? <FaTimes className="fa-times" /> : <FaBars className="fa-bar" />}
-      </div>
-
-      {/* Navbar Links */}
-      <ul className={isMenuOpen ? "nav-menu active" : "nav-menu"}>
+      <ul className="nav-menu">
         <li>
           <Link to="/" className="home-tag">
             <IoHomeSharp className="icon" /> Home
@@ -39,23 +23,26 @@ function Navbar() {
         </li>
         <li>
           <Link to="/addpoi" className="about-tag">
-            <TiPointOfInterest className="icon" /> Add POIs
+            Add POIs
           </Link>
         </li>
         <li>
           <Link to="/poisearch" className="contact-tag">
-            <RiSearchFill className="icon" /> Search POIs
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" className="contact-tag">
-            <RiSearchFill className="icon" /> About
+            Search POIs
           </Link>
         </li>
 
-        <Link to="/login">
-          <button className="login-button">Login</button>
-        </Link>
+        <li>
+          <Link to="/login">
+            <button className="login-button">Login</button>
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/login">
+            <button className="login-button">Login</button>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

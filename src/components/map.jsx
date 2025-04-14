@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import L from "leaflet";
 
-function Map({ displayResults }) {
+function Map({ displayResults}) {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const markersRef = useRef([]);
@@ -16,10 +16,21 @@ function Map({ displayResults }) {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(mapInstanceRef.current);
     }
+
+    mapInstanceRef.current?.on("click", (e) => {
+      markersRef.current.forEach((marker) => marker.remove());
+      markersRef.current = [];
+
+      const marker = L.marker([e.latlng.lat, e.latlng.lng])
+        .addTo(mapInstanceRef.current)
+        .bindPopup(`Latitude: ${e.latlng.lat} <br> Longitude: ${e.latlng.lng}`);
+      markersRef.current.push(marker);
+
+    });
+    
   }, []);
 
   useEffect(() => {
-    
     markersRef.current.forEach((marker) => marker.remove());
     markersRef.current = [];
 
@@ -36,7 +47,11 @@ function Map({ displayResults }) {
     }
   }, [displayResults]);
 
-  return <div className="map" ref={mapRef} style={{ height: "100%", width: "100%" }}></div>;
+  return (
+    <div
+      className="map" ref={mapRef} style={{ height: "100%", width: "100%" }}>
+    </div>
+  );
 }
 
 export default Map;
