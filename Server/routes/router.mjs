@@ -73,8 +73,26 @@ poiRouter.post("/recommend/:id", (req, res) => {
 
 poiRouter.post("/:id/review", (req, res) => {
   try {
+    const {review} = req.body;
+    const poi_id = req.params.id;
+
+    if (!review == "") {
+      return res.status(400).json({error: "Review cannot be empty"});
+    }
     
-  } catch (error) {}
+    const poiExists = db.prepare("SELECT id FROM pointsofinterest WHERE id = ?").get(poi_id);
+    if (!poiExists) {
+      return res.status(404).json({error: "id not found"});
+    }
+
+    if (result.changes ==1) {
+      return res.status(200).json({success: " Review added successfully"});
+    } else {
+      return res.status(500).json({error: "Failed to add review"})
+    }
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
 });
 
 export default poiRouter;

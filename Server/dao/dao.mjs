@@ -1,4 +1,5 @@
 
+
 export default class Pois {
 
     constructor(db,pointsofinterest) {
@@ -25,9 +26,10 @@ export default class Pois {
         return query.run(id);
     }
 
-    reviewbyId(id) {
+    reviewbyId(poi_id, review) {
         const query = this.db.prepare (
-            "INSERT INTO poi_reviews "
-        )
+            "INSERT INTO poi_reviews (poi_id, review) VALUES (?,?) "
+        );
+        return query.run(poi_id,review)
     }
 }

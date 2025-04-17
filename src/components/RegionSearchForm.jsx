@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,region}) {
+function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,region, handleReview}) {
   
 
   return (
@@ -61,6 +61,11 @@ function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,r
             No results found.
           </p>
         )}
+      </div>
+      <div className="review_box">
+        <h3>Review</h3>
+        <div className="review_input"><input type="text" placeholder="Kindly leave a review :)"required /> </div>
+        <div className="review_button"><button onClick={handleReview}>Submit</button></div>
       </div>
     </div>
   );

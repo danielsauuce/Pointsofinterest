@@ -2,8 +2,8 @@ import React, { useRef, useEffect } from "react";
 import L from "leaflet";
 
 function Map({ displayResults}) {
-  const mapRef = useRef(null);
-  const mapInstanceRef = useRef(null);
+  const mapRef = useRef("");
+  const mapInstanceRef = useRef("");
   const markersRef = useRef([]);
 
   useEffect(() => {

@@ -8,27 +8,8 @@ import toast from 'react-hot-toast';
 function PoiSearch() {
   const [results, setResults] = useState([]);
   const [region, setRegion] = useState("");
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
-  // async function checkIfLoggedIn() {
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/users/login`, {
-  //       credentials: 'include',
-  //     });
-  //     const result = await response.json();
-
-  //     if (result.username) {
-  //       setIsLoggedIn(true);
-  //       toast.success("Logged in");
-  //     } else {
-  //       setIsLoggedIn(false);
-  //       toast.error("Not logged in");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error checking login status:", error);
-  //   }
-  // }
+  
 
   async function Handlesearch(e) {
     e.preventDefault();
@@ -52,6 +33,7 @@ function PoiSearch() {
         `http://localhost:3000/poi/recommend/${id}`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -60,7 +42,7 @@ function PoiSearch() {
   
       const status = await response.json();
   
-      if (response.status !== 200) {
+      if (response.status!== 200) {
         toast.error("You're not logged in!")
       } else {
         const updatedResults = results.map((item) => {
@@ -80,13 +62,38 @@ function PoiSearch() {
     }
     
   }
+
+  async function handleReview(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch (`http://localhost:3000/poi/${id}/review`, {
+        method: "POST",
+        credentials: "include",
+        header: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      const status = response.json();
+      if (status!== 200) {
+        return toast.error("You're not logged in")
+      } else {
+        toast.success("Review Submitted successfully")
+      }
+    } catch (error) {
+      console.error(error.message)
+    }
+    
+  }
   
   return (
     <div className="search-container">
-      <RegionsSearchForm results={results} region={region} handleRecommend={handleRecommend} Handlesearch={Handlesearch} updateRegion={(r)=>setRegion(r)} />
+      <RegionsSearchForm results={results} region={region} handleRecommend={handleRecommend} Handlesearch={Handlesearch} updateRegion={(r)=>setRegion(r)} handleReview={handleReview} />
       <Map displayResults={results} />
     </div>
   );
 }
 
 export default PoiSearch;
+

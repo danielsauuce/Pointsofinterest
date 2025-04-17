@@ -21,6 +21,8 @@ function Home() {
     checkLogin();
   }, []);
 
+  
+
   return (
     <div>
       {username && <div className="logged-user">Welcome {username}</div>}

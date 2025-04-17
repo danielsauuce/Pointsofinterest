@@ -34,15 +34,15 @@ function AddPoi() {
         }),
       });
 
-      const status = await response.json();
+      const result = await response.json();
 
-      if (response.status !== 200) {
+      if (response.result!== 200) {
         toast.error("You're not logged in!");
       } else {
         toast.success("Point of Interest added successfully!");
       }
     } catch (error) {
-      console.error("Error:", error.message);
+      console.error("Error", error.message);
       toast.error("Network error");
     }
   }
@@ -54,37 +54,37 @@ function AddPoi() {
           <h1>ADD POINT OF INTEREST</h1>
 
           <div className="form-input">
-            <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+            <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} required />
           </div>
 
           <div className="form-input">
-            <input type="text" placeholder="Type"  onChange={(e) => setType(e.target.value)} />
+            <input type="text" placeholder="Type"  onChange={(e) => setType(e.target.value)} required />
           </div>
 
           <div className="form-input">
-            <input type="text" placeholder="Country" onChange={(e) => setCountry(e.target.value)} />
+            <input type="text" placeholder="Country" onChange={(e) => setCountry(e.target.value)} required  />
           </div>
 
           <div className="form-input">
-            <input type="text" placeholder="Region" onChange={(e) => setRegion(e.target.value)} />
+            <input type="text" placeholder="Region" onChange={(e) => setRegion(e.target.value)} required  />
           </div>
 
           <div className="form-input">
-            <input type="text" placeholder="Longitude" onChange={(e) => setLon(e.target.value)} />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text" placeholder="Latitude"  onChange={(e) => setLat(e.target.value)} />
-          </div>
-
-          <div className="form-input">
-            <input type="text" placeholder="Description"  onChange={(e) => setDescription(e.target.value)} />
+            <input type="text" placeholder="Longitude" onChange={(e) => setLon(e.target.value)} step="any" required />
           </div>
 
           <div className="form-input">
             <input
-              type="text" placeholder="Recommendations" onChange={(e) => setRecommendation(e.target.value)} />
+              type="text" placeholder="Latitude"  onChange={(e) => setLat(e.target.value)} step="any" required />
+          </div>
+
+          <div className="form-input">
+            <input type="text" placeholder="Description"  onChange={(e) => setDescription(e.target.value)} required />
+          </div>
+
+          <div className="form-input">
+            <input
+              type="text" placeholder="Recommendations" onChange={(e) => setRecommendation(e.target.value)} required />
           </div>
 
           <button type="submit">Submit</button>
