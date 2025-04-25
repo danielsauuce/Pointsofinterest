@@ -36,7 +36,6 @@ function Footer() {
             <div className="bottom">
                 <div>
                     <h4>Project</h4>
-
                     <Link to="#">Changelog</Link>
                     <Link to="#">Status</Link>
                     <Link to="#">license</Link>
@@ -45,7 +44,6 @@ function Footer() {
 
                 <div>
                     <h4>Community</h4>
-
                     <Link to="#">Discord</Link>
                     <Link to="#">Telegram</Link>
                     <Link to="#">Twitter</Link>
@@ -54,7 +52,6 @@ function Footer() {
 
                 <div>
                     <h4>Help</h4>
-
                     <Link to="#">Support</Link>
                     <Link to="#">TroubleShooting</Link>
                     <Link to="#">Contact us</Link>
@@ -63,10 +60,8 @@ function Footer() {
 
                 <div>
                     <h4>Others</h4>
-
                     <Link to="#">Privacy policy</Link>
-                    <Link to="#">Term of service</Link>
-                    
+                    <Link to="#">Term of service</Link>   
                 </div>
             </div>
         </div>

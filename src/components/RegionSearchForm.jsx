@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 
-function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,region, handleReview}) {
-  
+function RegionsSearchForm({results,handleRecommend,Handlesearch,updateRegion,region,Searched }) {
 
   return (
     <div className="region-wrapper">
@@ -9,63 +7,36 @@ function RegionsSearchForm({results, handleRecommend,Handlesearch,updateRegion,r
         <h1 style={{ paddingBottom: "10px" }}>Search for Region</h1>
 
         <div className="form-input">
-          <input
-            type="text"
-            placeholder="Enter Region..."
-            value={region}
-            style={{ paddingBottom: "10px" }}
-            onChange={(e) => updateRegion(e.target.value)}
-          />
+          <input type="text" placeholder="Enter Region..." value={region} style={{ paddingBottom: "10px" }} onChange={(e) => updateRegion(e.target.value)}/>
         </div>
         <button onClick={Handlesearch}>Search</button>
       </div>
 
       <div style={{ paddingTop: "10px", height: "80%" }}>
-        {results.length > 0 ? (
-          <ul
-            style={{height: "100%",overflowY: "scroll",listStyle: "none",borderRadius: "5px",padding: "2rem",backgroundColor: "#F8EDE3",}}>
-
+        {Searched ? (results.length > 0 ? (
+            <ul
+              style={{height: "100%",overflowY: "scroll", listStyle: "none",borderRadius: "5px", padding: "2rem",backgroundColor: "#F8EDE3" }}
+              > 
             {results.map((data, index) => (
-              <li key={index}className="region-results"
-                style={{
-                  padding: "20px",
-                  margin: "10px",
-                  borderRadius: "20px",
-                  boxShadow: "0 0 5px grey",
-                  backgroundColor: "white",
-                }}
-              >
-                <h3>{data.name}</h3>
-
-                <p>Type: {data.type}</p>
-                <p>Country: {data.country}</p>
-                <p>lon: {data.lon}</p>
-                <p>lat: {data.lat}</p>
-                <p>Description: {data.description}</p>
-                <p>Recommendations: {data.recommendations}</p>
-                <br />
-                <button onClick={(e) => handleRecommend(e, data.id)}>
-                  Recommend
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              marginTop: "30%",
-            }}
-          >
-            No results found.
-          </p>
-        )}
-      </div>
-      <div className="review_box">
-        <h3>Review</h3>
-        <div className="review_input"><input type="text" placeholder="Kindly leave a review :)"required /> </div>
-        <div className="review_button"><button onClick={handleReview}>Submit</button></div>
+                <li
+                  key={index} className="region-results" style={{ padding: "20px",margin: "10px",borderRadius: "20px", boxShadow: "0 0 5px grey",backgroundColor: "white" }}
+                >
+                  <h3>{data.name}</h3>
+                  <p>Type: {data.type}</p>
+                  <p>Country: {data.country}</p>
+                  <p>lon: {data.lon}</p>
+                  <p>lat: {data.lat}</p>
+                  <p>Description: {data.description}</p>
+                  <p>Recommendations: {data.recommendations}</p>
+                  <br/>
+                  <button onClick={(e) => handleRecommend(e, data.id)}> Recommend </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p style={{textAlign: "center",fontSize: "20px", marginTop: "30%" }} > No results found. </p>
+          )
+        ) : null}
       </div>
     </div>
   );

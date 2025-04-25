@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
 import "../components/navbar.css";
 import { useState, useEffect } from "react";
@@ -35,7 +35,7 @@ function Navbar() {
         if (response.status == 200) {
           setUsername("");
           toast.success("Logout successful")
-          navigate("/");
+          navigate("/login");
         } else {
           toast.error("Unable to logout")
         }
@@ -45,29 +45,17 @@ function Navbar() {
       }
     }
   
-
   return (
     <nav className="navbar-container">
       <Link to="/" className="logo">
-        <h1 className="nav-logo"> Point of Interest</h1>
+        <h1 className="nav-logo"> Point of Interest</h1> 
       </Link>
 
       <ul className="nav-menu">
         <li>
-          <Link to="/" className="home-tag">
-            <IoHomeSharp className="icon" /> Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/addpoi" className="about-tag">
-            Add POIs
-          </Link>
-        </li>
-        <li>
-          <Link to="/poisearch" className="contact-tag">
-            Search POIs
-          </Link>
-        </li>
+          <Link to="/" className="home-tag"><IoHomeSharp className="icon" /> Home </Link></li>
+        <li> <Link to="/addpoi" className="about-tag"> Add POIs</Link> </li>
+        <li> <Link to="/poisearch" className="contact-tag"> Search POIs</Link> </li>
 
         <li> {username ? (<button onClick={handleLogout}>Logout</button>) : (<Link to= "/login"><button>Login</button></Link>)}</li>
 

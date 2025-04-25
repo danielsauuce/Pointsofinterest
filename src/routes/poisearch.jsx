@@ -8,11 +8,11 @@ import toast from 'react-hot-toast';
 function PoiSearch() {
   const [results, setResults] = useState([]);
   const [region, setRegion] = useState("");
+  const [Searched, setSearched] = useState(false)
 
   
-
-  async function Handlesearch(e) {
-    e.preventDefault();
+  async function Handlesearch() {
+    setSearched(true);
 
     try {
       const response = await fetch(`http://localhost:3000/poi/${region}`);
@@ -63,20 +63,20 @@ function PoiSearch() {
     
   }
 
-  async function handleReview(e) {
-    e.preventDefault();
+  async function handleReview(id,review) {
 
     try {
       const response = await fetch (`http://localhost:3000/poi/${id}/review`, {
         method: "POST",
         credentials: "include",
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({ review }),
       })
 
       const status = response.json();
-      if (status!== 200) {
+      if (response.status!== 200) {
         return toast.error("You're not logged in")
       } else {
         toast.success("Review Submitted successfully")
@@ -86,11 +86,12 @@ function PoiSearch() {
     }
     
   }
+
   
   return (
     <div className="search-container">
-      <RegionsSearchForm results={results} region={region} handleRecommend={handleRecommend} Handlesearch={Handlesearch} updateRegion={(r)=>setRegion(r)} handleReview={handleReview} />
-      <Map displayResults={results} />
+      <RegionsSearchForm results={results} region={region} handleRecommend={handleRecommend} Handlesearch={Handlesearch} updateRegion={(r)=>setRegion(r)} handleReview={handleReview} Searched={Searched}/>
+      <Map displayResults={results} addReview={handleReview} />
     </div>
   );
 }

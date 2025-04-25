@@ -1,5 +1,4 @@
 
-
 const userMiddleware = (req, res, next) => {
   if (["POST", "PUT", "DELETE"].indexOf(req.method) == -1) {
     next();

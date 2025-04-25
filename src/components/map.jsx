@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import L from "leaflet";
 
-function Map({ displayResults}) {
+function Map({ displayResults, sendMapLatLng, addReview }) {
   const mapRef = useRef("");
   const mapInstanceRef = useRef("");
   const markersRef = useRef([]);
@@ -21,13 +21,10 @@ function Map({ displayResults}) {
       markersRef.current.forEach((marker) => marker.remove());
       markersRef.current = [];
 
-      const marker = L.marker([e.latlng.lat, e.latlng.lng])
-        .addTo(mapInstanceRef.current)
-        .bindPopup(`Latitude: ${e.latlng.lat} <br> Longitude: ${e.latlng.lng}`);
-      markersRef.current.push(marker);
-
+      if (sendMapLatLng) {
+        sendMapLatLng(e.latlng.lat, e.latlng.lng);
+      }
     });
-    
   }, []);
 
   useEffect(() => {
@@ -38,10 +35,26 @@ function Map({ displayResults}) {
       const { lat, lon } = displayResults[0];
       mapInstanceRef.current.setView([lat, lon], 13);
 
-      displayResults.forEach(({ name, description, lat, lon }) => {
-        const marker = L.marker([lat, lon])
-          .addTo(mapInstanceRef.current)
-          .bindPopup(`${name} <br> ${description}`);
+      displayResults.forEach(({ name, description, lat, lon, id }) => {
+        const marker = L.marker([lat, lon]).addTo(mapInstanceRef.current)
+          .bindPopup(`<div>
+                                    <strong>${name}</strong><br/>
+                                    <p>${description}</p>
+                                    <textarea id="${id}" rows="3" placeholder="Leave your review here..."></textarea>
+                                    <button type="button" id="btn-${id}"  >Submit Review</button>
+                            </div>`);
+        marker.on("popupopen", () => {
+          const btn = document.getElementById(`btn-${id}`);
+          const textarea = document.getElementById(`${id}`);
+
+          if (btn && textarea) {
+            btn.addEventListener("click", () => {
+              const review = textarea.value;
+              addReview(id, review);
+              textarea.value = "";
+            });
+          }
+        });
         markersRef.current.push(marker);
       });
     }
@@ -49,8 +62,10 @@ function Map({ displayResults}) {
 
   return (
     <div
-      className="map" ref={mapRef} style={{ height: "100%", width: "100%" }}>
-    </div>
+      className="map"
+      ref={mapRef}
+      style={{ height: "100%", width: "100%" }}
+    ></div>
   );
 }
 

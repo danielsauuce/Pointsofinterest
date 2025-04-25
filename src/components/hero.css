@@ -27,7 +27,7 @@
 }
 
 .hero-text h1 {
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 800;
     background: #ffff;
     -webkit-background-clip: text;
@@ -35,7 +35,7 @@
 }
 
 .hero-text p {
-    font-size: 1.3rem;
+    font-size: 2rem;
     color: #ffff;
     padding: 0.5rem 0 2rem 0;
 }
