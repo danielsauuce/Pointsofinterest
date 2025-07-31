@@ -9,7 +9,7 @@
 - **React** for the frontend
 - **Leaflet + OpenStreetMap** for mapping functionality
 - **AJAX** for dynamic frontend-backend communication
-- **Postman** for testing all API endpoints
+- **RESTer** for testing all API endpoints
 
 The project supports authenticated users and provides a review and recommendation system for each point of interest (POI). Authentication and authorization were key components of this project, ensuring that only verified users could access certain functionality, and that user data is handled securely.
 
