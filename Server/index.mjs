@@ -14,10 +14,6 @@ const SqliteStore = betterSqlite3Session(Session, sessDb);
 
 app.use(express.json());
 
-ViteExpress.config({
-  csp: false,
-});
-
 app.use(
   Session({
     store: new SqliteStore(),
