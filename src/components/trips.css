@@ -1,65 +1,100 @@
 .trips {
-  margin: 4rem 6rem;
-  color: #2a2a2a;
+  margin: 8rem 6rem;
+  color: var(--text-dark);
 }
 
 .trips h1 {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
   text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
 }
 
 .trips p {
   text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-medium);
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  line-height: 1.8;
 }
 
 .trip-card {
-  margin: 3rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin: 0 auto;
 }
 
 .t-card {
-  width: 32%;
   text-align: start;
-  box-shadow: 0 5px 25px 2px rgba(0, 0, 0, 0.11);
-  border-radius: 7px;
+  background: white;
+  border-radius: 24px;
   cursor: pointer;
-  padding: 1rem 0.8rem;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.t-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
 }
 
 .t-image {
-  height: 200px;
+  height: 280px;
   overflow: hidden;
-  border-radius: 7px;
+  position: relative;
+}
+
+.t-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.t-card:hover .t-image::after {
+  opacity: 1;
 }
 
 .t-image img {
   width: 100%;
   height: 100%;
-  transition: 0.3s ease-in-out;
-  border-radius: 7px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.t-image img:hover {
-  transform: scale(1.3);
+.t-card:hover .t-image img {
+  transform: scale(1.15);
 }
 
 .t-card h4 {
-  font-size: 1.3rem;
-  padding: 0.9rem 0 0.2rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1.5rem 1.5rem 0.5rem;
+  color: var(--text-dark);
 }
 
-@media screen and (max-width: 850px) {
-  .trip {
-    margin: 4rem 2 rem;
-  }
-
-  .trip-card {
-    flex-direction: column;
-  }
-
-  .t-card {
-    width: 100%;
-    margin-bottom: 1.5rem;
-  }
+.t-card p {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--text-medium);
+  line-height: 1.6;
 }
