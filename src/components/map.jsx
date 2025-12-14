@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import L from "leaflet";
+import React, { useRef, useEffect } from 'react';
+import L from 'leaflet';
 
 function Map({ displayResults = [], sendMapLatLng, addReview }) {
   const mapRef = useRef(null);
@@ -12,13 +12,13 @@ function Map({ displayResults = [], sendMapLatLng, addReview }) {
       const initialPos = [51.505, -0.09];
       mapInstanceRef.current = L.map(mapRef.current).setView(initialPos, 13);
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(mapInstanceRef.current);
 
       // Click to set new lat/lon
-      mapInstanceRef.current.on("click", (e) => {
+      mapInstanceRef.current.on('click', (e) => {
         clearMarkers();
         sendMapLatLng?.(e.latlng.lat, e.latlng.lng);
       });
@@ -47,14 +47,14 @@ function Map({ displayResults = [], sendMapLatLng, addReview }) {
         .addTo(mapInstanceRef.current)
         .bindPopup(createPopupContent({ id, name, description }));
 
-      marker.on("popupopen", () => {
+      marker.on('popupopen', () => {
         const btn = document.getElementById(`btn-${id}`);
         const textarea = document.getElementById(`review-${id}`);
         if (btn && textarea) {
-          btn.addEventListener("click", () => {
+          btn.addEventListener('click', () => {
             const review = textarea.value;
             addReview(id, review);
-            textarea.value = "";
+            textarea.value = '';
           });
         }
       });
@@ -78,7 +78,7 @@ function Map({ displayResults = [], sendMapLatLng, addReview }) {
     <div
       className="map"
       ref={mapRef}
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: '100%', width: '100%' }}
     ></div>
   );
 }

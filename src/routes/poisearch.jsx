@@ -1,13 +1,13 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import "../components/login.css";
-import Map from "../components/map";
-import RegionsSearchForm from "../components/RegionSearchForm";
-import "../components/search.css";
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import '../components/login.css';
+import Map from '../components/map';
+import RegionsSearchForm from '../components/RegionSearchForm';
+import '../components/search.css';
 
 function PoiSearch() {
   const [results, setResults] = useState([]);
-  const [region, setRegion] = useState("");
+  const [region, setRegion] = useState('');
   const [Searched, setSearched] = useState(false);
 
   async function Handlesearch() {
@@ -20,7 +20,7 @@ function PoiSearch() {
       setResults(result);
       console.log(result);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
   }
 
@@ -31,10 +31,10 @@ function PoiSearch() {
       const response = await fetch(
         `http://localhost:3000/poi/recommend/${id}`,
         {
-          method: "POST",
-          credentials: "include",
+          method: 'POST',
+          credentials: 'include',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -53,20 +53,20 @@ function PoiSearch() {
 
         setResults(updatedResults);
 
-        toast.success("Recommendation Updated");
+        toast.success('Recommendation Updated');
       }
     } catch (error) {
-      console.error("Error:", error.message);
+      console.error('Error:', error.message);
     }
   }
 
   async function handleReview(id, review) {
     try {
       const response = await fetch(`http://localhost:3005/poi/${id}/review`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ review }),
       });
@@ -74,7 +74,7 @@ function PoiSearch() {
       if (response.status !== 200) {
         toast.error("You're not logged in");
       } else {
-        toast.success("Review Submitted successfully");
+        toast.success('Review Submitted successfully');
       }
     } catch (error) {
       console.error(error.message);

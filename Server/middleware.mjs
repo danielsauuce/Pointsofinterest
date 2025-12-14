@@ -1,6 +1,5 @@
-
 const userMiddleware = (req, res, next) => {
-  if (["POST", "PUT", "DELETE"].indexOf(req.method) == -1) {
+  if (['POST', 'PUT', 'DELETE'].indexOf(req.method) == -1) {
     next();
   } else {
     if (req.session.username) {

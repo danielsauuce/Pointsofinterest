@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import Destination from "../components/destination";
-import Hero from "../components/hero";
-import Trip from "../components/trips";
+import { useEffect, useState } from 'react';
+import Destination from '../components/destination';
+import Hero from '../components/hero';
+import Trip from '../components/trips';
 
 function Home() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     async function checkLogin() {
-      const response = await fetch("http://localhost:3005/users/login", {
-        credentials: "include",
+      const response = await fetch('http://localhost:3005/users/login', {
+        credentials: 'include',
       });
 
       const results = await response.json();

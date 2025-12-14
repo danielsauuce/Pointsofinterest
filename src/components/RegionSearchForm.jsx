@@ -27,12 +27,12 @@ function RegionsSearchForm({
             <ul className="region-results-list">
               {results.map((data) => {
                 const details = [
-                  { label: "Type", value: data.type },
-                  { label: "Country", value: data.country },
-                  { label: "Longitude", value: data.lon },
-                  { label: "Latitude", value: data.lat },
-                  { label: "Description", value: data.description },
-                  { label: "Recommendations", value: data.recommendations },
+                  { label: 'Type', value: data.type },
+                  { label: 'Country', value: data.country },
+                  { label: 'Longitude', value: data.lon },
+                  { label: 'Latitude', value: data.lat },
+                  { label: 'Description', value: data.description },
+                  { label: 'Recommendations', value: data.recommendations },
                 ];
 
                 return (

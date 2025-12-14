@@ -1,15 +1,19 @@
-import "../index.css";
-import {BrowserRouter as Router,Route,Routes,useLocation,} from "react-router-dom";
-import LoginPage from "./Login";
-import SignUp from "./Signup";
-import Navbar from "./navbar";
-import PoiSearch from "../routes/poisearch";
-import AddPoi from "../routes/addpoi";
-import Home from "../routes/home";
-import "../components/footer.css";
-import Footer from "./footer";
+import '../index.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom';
+import LoginPage from './Login';
+import SignUp from './Signup';
+import Navbar from './navbar';
+import PoiSearch from '../routes/poisearch';
+import AddPoi from '../routes/addpoi';
+import Home from '../routes/home';
+import '../components/footer.css';
+import Footer from './footer';
 import { Toaster } from 'react-hot-toast';
-
 
 function App() {
   return (
@@ -21,13 +25,13 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const hideHeaderRoutes = ["/login", "/signup"];
+  const hideHeaderRoutes = ['/login', '/signup'];
   const shouldShowHeader = !hideHeaderRoutes.includes(location.pathname);
 
   return (
     <>
       {shouldShowHeader && <Navbar />}
-      <Toaster position="top-center" toastOptions={{duration: 2000}}/>
+      <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
 
       <Routes>
         <Route path="/" element={<Home />} />

@@ -1,5 +1,5 @@
-import backgroundImage from "../assets/Backgrounding.avif";
-import "../components/hero.css";
+import backgroundImage from '../assets/Backgrounding.avif';
+import '../components/hero.css';
 
 function Hero({ username }) {
   return (

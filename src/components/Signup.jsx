@@ -1,15 +1,15 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import "../components/signup.css";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import '../components/signup.css';
+import { useNavigate } from 'react-router-dom';
 
 const signupFields = [
-  { name: "username", type: "text", placeholder: "Username" },
-  { name: "password", type: "password", placeholder: "Password" },
+  { name: 'username', type: 'text', placeholder: 'Username' },
+  { name: 'password', type: 'password', placeholder: 'Password' },
 ];
 
 function SignUp() {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -21,23 +21,23 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3005/users/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('http://localhost:3005/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        toast.error(result.error || "Username or Password already exist");
+        toast.error(result.error || 'Username or Password already exist');
       } else {
-        toast.success("Registered Successfully");
-        navigate("/login");
+        toast.success('Registered Successfully');
+        navigate('/login');
       }
     } catch (error) {
-      console.error("Error:", error.message);
-      toast.error("Something went wrong, please try again");
+      console.error('Error:', error.message);
+      toast.error('Something went wrong, please try again');
     }
   }
 
@@ -63,7 +63,7 @@ function SignUp() {
 
           <div className="terms-box">
             <label>
-              <input type="checkbox" />I agree to the{" "}
+              <input type="checkbox" />I agree to the{' '}
               <a href="#">Terms and Conditions</a>
             </label>
           </div>

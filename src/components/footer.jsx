@@ -3,69 +3,69 @@ import {
   TiSocialInstagram,
   TiSocialTwitter,
   TiSocialLinkedin,
-} from "react-icons/ti";
-import { Link } from "react-router-dom";
-import "../components/footer.css";
+} from 'react-icons/ti';
+import { Link } from 'react-router-dom';
+import '../components/footer.css';
 
 const socialLinks = [
   {
-    name: "Facebook",
+    name: 'Facebook',
     icon: <TiSocialFacebook />,
-    url: "https://www.facebook.com",
-    className: "facebook",
+    url: 'https://www.facebook.com',
+    className: 'facebook',
   },
   {
-    name: "Instagram",
+    name: 'Instagram',
     icon: <TiSocialInstagram />,
-    url: "https://www.instagram.com",
-    className: "instagram",
+    url: 'https://www.instagram.com',
+    className: 'instagram',
   },
   {
-    name: "Twitter",
+    name: 'Twitter',
     icon: <TiSocialTwitter />,
-    url: "https://twitter.com",
-    className: "twitter",
+    url: 'https://twitter.com',
+    className: 'twitter',
   },
   {
-    name: "LinkedIn",
+    name: 'LinkedIn',
     icon: <TiSocialLinkedin />,
-    url: "https://www.linkedin.com",
-    className: "linkedin",
+    url: 'https://www.linkedin.com',
+    className: 'linkedin',
   },
 ];
 
 const footerSections = [
   {
-    title: "Project",
+    title: 'Project',
     links: [
-      { label: "Changelog", to: "/changelog" },
-      { label: "Status", to: "/status" },
-      { label: "License", to: "/license" },
-      { label: "All Versions", to: "/versions" },
+      { label: 'Changelog', to: '/changelog' },
+      { label: 'Status', to: '/status' },
+      { label: 'License', to: '/license' },
+      { label: 'All Versions', to: '/versions' },
     ],
   },
   {
-    title: "Community",
+    title: 'Community',
     links: [
-      { label: "Discord", href: "https://discord.com" },
-      { label: "Telegram", href: "https://telegram.org" },
-      { label: "Twitter", href: "https://twitter.com" },
-      { label: "Facebook", href: "https://www.facebook.com" },
+      { label: 'Discord', href: 'https://discord.com' },
+      { label: 'Telegram', href: 'https://telegram.org' },
+      { label: 'Twitter', href: 'https://twitter.com' },
+      { label: 'Facebook', href: 'https://www.facebook.com' },
     ],
   },
   {
-    title: "Help",
+    title: 'Help',
     links: [
-      { label: "Support", to: "/support" },
-      { label: "Troubleshooting", to: "/troubleshooting" },
-      { label: "Contact Us", to: "/contact" },
+      { label: 'Support', to: '/support' },
+      { label: 'Troubleshooting', to: '/troubleshooting' },
+      { label: 'Contact Us', to: '/contact' },
     ],
   },
   {
-    title: "Others",
+    title: 'Others',
     links: [
-      { label: "Privacy Policy", to: "/privacy-policy" },
-      { label: "Terms of Service", to: "/terms-of-service" },
+      { label: 'Privacy Policy', to: '/privacy-policy' },
+      { label: 'Terms of Service', to: '/terms-of-service' },
     ],
   },
 ];

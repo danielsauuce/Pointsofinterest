@@ -1,15 +1,15 @@
-import "../components/login.css";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import '../components/login.css';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const loginFields = [
-  { name: "username", type: "text", placeholder: "Username" },
-  { name: "password", type: "password", placeholder: "Password" },
+  { name: 'username', type: 'text', placeholder: 'Username' },
+  { name: 'password', type: 'password', placeholder: 'Password' },
 ];
 
 function LoginPage() {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -21,25 +21,25 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3005/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
+      const response = await fetch('http://localhost:3005/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        toast.error(result.error || "Username or Password do not match");
+        toast.error(result.error || 'Username or Password do not match');
         return;
       }
 
-      toast.success("Login Successful");
-      navigate("/");
+      toast.success('Login Successful');
+      navigate('/');
     } catch (error) {
-      console.error("Error:", error.message);
-      toast.error("Network error");
+      console.error('Error:', error.message);
+      toast.error('Network error');
     }
   }
 
