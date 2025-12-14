@@ -1,4 +1,3 @@
-
 function TripData(props) {
   return (
     <div className="t-card">

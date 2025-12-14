@@ -8,10 +8,10 @@ function Home() {
 
   useEffect(() => {
     async function checkLogin() {
-      const response = await fetch("http://localhost:3000/users/login", {
+      const response = await fetch("http://localhost:3005/users/login", {
         credentials: "include",
       });
-      
+
       const results = await response.json();
       if (results.username) {
         setUsername(results.username);

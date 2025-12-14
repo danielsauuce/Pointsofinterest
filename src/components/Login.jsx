@@ -1,65 +1,68 @@
 import "../components/login.css";
 import { useState } from "react";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  
-  const navigate = useNavigate()
+const loginFields = [
+  { name: "username", type: "text", placeholder: "Username" },
+  { name: "password", type: "password", placeholder: "Password" },
+];
 
-  async function handlelogin(e) {
+function LoginPage() {
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
+  async function handleLogin(e) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/users/login", {
+      const response = await fetch("http://localhost:3005/users/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(formData),
       });
 
-      const status = await response.json();
+      const result = await response.json();
 
-      if (response.status != 200) {
-        toast.error("Username or Password do not match")
-      } else {
-        toast.success("Login Successfully")
-        navigate("/")                                                 
+      if (!response.ok) {
+        toast.error(result.error || "Username or Password do not match");
+        return;
       }
+
+      toast.success("Login Successful");
+      navigate("/");
     } catch (error) {
       console.error("Error:", error.message);
+      toast.error("Network error");
     }
   }
 
   return (
-    <div style={{width: "100vw",height: "100vh",display: "flex",justifyContent: "center", alignItems: "center", backgroundColor: "#6CBEC7"}}>
-    
+    <div className="login-page">
       <div className="wrapper">
         <div className="form-box">
-          <form onSubmit={handlelogin}>
+          <form onSubmit={handleLogin}>
             <h1>Point Of Interest</h1>
             <h6>Please enter your details.</h6>
 
-            <div className="form-input">
-              <input
-                type="text"
-                placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="form-input">
-              <input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+            {loginFields.map(({ name, type, placeholder }) => (
+              <div className="form-input" key={name}>
+                <input
+                  type={type}
+                  name={name}
+                  placeholder={placeholder}
+                  value={formData[name]}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            ))}
 
             <div className="remember-forget">
               <label>

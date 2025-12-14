@@ -3,186 +3,137 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Map from "../components/map";
 
-function AddPoi() {
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [country, setCountry] = useState("");
-  const [region, setRegion] = useState("");
-  const [lat, setLat] = useState("");
-  const [lon, setLon] = useState("");
-  const [addedPois,setAddedPois] = useState([]);
-  const [description, setDescription] = useState("");
-  const [recommendations, setRecommendation] = useState("");
+const formFields = [
+  { name: "name", placeholder: "Name", type: "text" },
+  { name: "type", placeholder: "Type", type: "text" },
+  { name: "country", placeholder: "Country", type: "text" },
+  { name: "region", placeholder: "Region", type: "text" },
+  { name: "lon", placeholder: "Longitude", type: "text" },
+  { name: "lat", placeholder: "Latitude", type: "text" },
+  { name: "description", placeholder: "Description", type: "text" },
+  { name: "recommendations", placeholder: "Recommendations", type: "number" },
+];
 
-  async function handleNewpoiUpdate(e) {
+function AddPoi() {
+  const [formData, setFormData] = useState({
+    name: "",
+    type: "",
+    country: "",
+    region: "",
+    lon: "",
+    lat: "",
+    description: "",
+    recommendations: "",
+  });
+
+  const [addedPois, setAddedPois] = useState([]);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/poi/newpoi`, {
+      const response = await fetch("http://localhost:3005/poi/newpoi", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name,
-          type,
-          country,
-          region,
-          lat,
-          lon,
-          description,
-          recommendations,
-        }),
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
 
-      if (response.status !== 200) {
-
-        toast.error("You're not logged in!");
-        
-      } else {
-        setAddedPois([
-          {
-            id:result.id,
-            name,
-            type,
-            country,
-            region,
-            lat,
-            lon,
-            description,
-            recommendations,
-          }
-        ]);
-        
-        toast.success("Point of Interest added successfully!");
+      if (!response.ok) {
+        toast.error(result.error || "You're not logged in!");
+        return;
       }
+
+      setAddedPois((prev) => [...prev, { id: result.id, ...formData }]);
+
+      toast.success("Point of Interest added successfully!");
+
+      //reset form
+      setFormData({
+        name: "",
+        type: "",
+        country: "",
+        region: "",
+        lon: "",
+        lat: "",
+        description: "",
+        recommendations: "",
+      });
     } catch (error) {
-      console.error("Error", error.message);
+      console.error(error.message);
       toast.error("Network error");
     }
   }
 
-  async function handleReview(id,review) {
-
-
-    try {
-      const response = await fetch (`http://localhost:3000/poi/${id}/review`, {
-        method: "POST",
-        credentials: "include",
-        header: {
-          "Content-Type": "application/json",
-        },
-        body:{
-          review
-        }
-      })
-
-      const status = response.json();
-      if (status!== 200) {
-        return toast.error("You're not logged in")
-      } else {
-        toast.success("Review Submitted successfully")
-      }
-    } catch (error) {
-      console.error(error.message)
-    }
-    
+  function getMapLatLng(lat, lng) {
+    setFormData((prev) => ({
+      ...prev,
+      lat,
+      lon: lng,
+    }));
   }
 
-  function getMapLatLng(lat, lng) {
-    setLat(lat);
-    setLon(lng);
+  async function handleReview(id, review) {
+    try {
+      const response = await fetch(`http://localhost:3005/poi/${id}/review`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ review }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        toast.error(result.error || "You're not logged in");
+        return;
+      }
+
+      toast.success("Review submitted successfully");
+    } catch (error) {
+      toast.error("Network error");
+    }
   }
 
   return (
     <div className="search-container">
       <div className="form-wrapper">
-        <form onSubmit={handleNewpoiUpdate}>
+        <form onSubmit={handleSubmit}>
           <h1>ADD POINT OF INTEREST</h1>
 
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Type"
-              onChange={(e) => setType(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Country"
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Region"
-              onChange={(e) => setRegion(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              value={lon}
-              placeholder="Longitude"
-              onChange={(e) => setLon(e.target.value)}
-              step="any"
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Latitude"
-              value={lat}
-              onChange={(e) => setLat(e.target.value)}
-              step="any"
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Description"
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-input">
-            <input
-              type="text"
-              placeholder="Recommendations"
-              onChange={(e) => setRecommendation(e.target.value)}
-              required
-            />
-          </div>
+          {formFields.map(({ name, placeholder, type }) => (
+            <div className="form-input" key={name}>
+              <input
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                value={formData[name]}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          ))}
 
           <button type="submit">Submit</button>
         </form>
       </div>
 
-      <Map displayResults={addedPois} sendMapLatLng={getMapLatLng} addReview={handleReview}/>
+      <Map
+        displayResults={addedPois}
+        sendMapLatLng={getMapLatLng}
+        addReview={handleReview}
+      />
     </div>
   );
 }
