@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import LoginPage from './Login';
 import SignUp from './Signup';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 import PoiSearch from '../routes/poisearch';
 import AddPoi from '../routes/addpoi';
 import Home from '../routes/home';
